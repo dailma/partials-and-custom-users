@@ -1,0 +1,40 @@
+<form ng-submit="addUser()">
+	<div class="side_by_side">
+		<label for="user.nameFirst">First name</label>
+		<label for="user.nameLast">Last name</label>
+		<label for="user.favLang">Favorite language</label>
+	</div>
+	<div class="side_by_side">
+		<input type="text" ng-model="user.nameFirst" ng-required="required">
+		<input type="text" ng-model="user.nameLast" ng-required="required">
+		<input type="text" ng-model="user.favLang" ng-required="required">
+	</div>
+	<div class="side_by_side">
+		<input type="submit" value="Create user" ng-disabled="!user">
+	</div>
+</form>
+<table>
+	<tr>
+		<th class="col_name" ng-click="changeSort('nameFirst')">
+			First name
+			<span ng-show="sortColumn==='nameFirst'" class="sort_order" ng-class="{reversed:sortReverse}"></span>
+		</th>
+		<th class="col_name" ng-click="changeSort('nameLast')">
+			Last name
+			<span ng-show="sortColumn==='nameLast'" class="sort_order" ng-class="{reversed:sortReverse}"></span>
+		</th>
+		<th class="col_lang" ng-click="changeSort('favLang')">
+			Favorite language
+			<span ng-show="sortColumn==='favLang'" class="sort_order" ng-class="{reversed:sortReverse}"></span>
+		</th>
+		<th class="col_actions">Actions</th>
+	</tr>
+	<tr ng-repeat="user in users | orderBy:sortColumn:sortReverse">
+		<td>{{ user.nameFirst }}</td>
+		<td>{{ user.nameLast }}</td>
+		<td>{{ user.favLang }}</td>
+		<td>
+			<button ng-click="removeUser(user)">Delete user</button>
+		</td>
+	</tr>
+</table>

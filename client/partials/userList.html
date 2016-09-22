@@ -1,0 +1,21 @@
+<table>
+	<tr>
+		<th class="col_name" ng-click="changeSort('nameFirst')">
+			First name
+			<span ng-show="sortColumn==='nameFirst'" class="sort_order" ng-class="{reversed:sortReverse}"></span>
+		</th>
+		<th class="col_name" ng-click="changeSort('nameLast')">
+			Last name
+			<span ng-show="sortColumn==='nameLast'" class="sort_order" ng-class="{reversed:sortReverse}"></span>
+		</th>
+		<th class="col_lang" ng-click="changeSort('favLang')">
+			Favorite language
+			<span ng-show="sortColumn==='favLang'" class="sort_order" ng-class="{reversed:sortReverse}"></span>
+		</th>
+	</tr>
+	<tr ng-repeat="user in users | orderBy:sortColumn:sortReverse">
+		<td>{{ user.nameFirst }}</td>
+		<td>{{ user.nameLast }}</td>
+		<td>{{ user.favLang }}</td>
+	</tr>
+</table>
